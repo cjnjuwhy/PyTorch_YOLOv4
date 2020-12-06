@@ -1,4 +1,4 @@
 classes=80
-train=../coco/train2017.txt
-valid=../coco/testdev2017.txt
+train=/root/wanghy/coco/train2017.txt
+valid=/root/wanghy/coco/testdev2017.txt
 names=data/coco.names

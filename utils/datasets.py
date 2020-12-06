@@ -312,6 +312,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
             raise Exception('Error loading data from %s: %s\nSee %s' % (path, e, help_url))
 
         n = len(self.img_files)
+        
         assert n > 0, 'No images found in %s. See %s' % (path, help_url)
         bi = np.floor(np.arange(n) / batch_size).astype(np.int)  # batch index
         nb = bi[-1] + 1  # number of batches
@@ -339,7 +340,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 cache = self.cache_labels(cache_path)  # re-cache
         else:
             cache = self.cache_labels(cache_path)  # cache
-
+            
         # Get labels
         labels, shapes = zip(*[cache[x] for x in self.img_files])
         self.shapes = np.array(shapes, dtype=np.float64)
@@ -441,6 +442,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
     def cache_labels(self, path='labels.cache'):
         # Cache dataset labels, check images and read shapes
         x = {}  # dict
+        
         pbar = tqdm(zip(self.img_files, self.label_files), desc='Scanning images', total=len(self.img_files))
         for (img, label) in pbar:
             try:
